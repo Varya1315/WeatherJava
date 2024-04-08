@@ -18,8 +18,8 @@
     <properties>
 
         <java.version>21</java.version>
-        <sonar.organization>varya1315</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+            <sonar.organization>varya1315</sonar.organization>
+            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
     </properties>
 

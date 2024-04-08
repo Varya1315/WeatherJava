@@ -20,7 +20,7 @@ public class RegionServiceAspect {
             RegionServiceAspect.class);
 
 
-    @Pointcut("execution(* weather.springwea.service.RegionService.findAll())")
+    @Pointcut("execution(* by.abakumova.weatherjava.service.RegionService.findAll())")
     public void findAllPointcut() {
     }
 
@@ -44,7 +44,7 @@ public class RegionServiceAspect {
         }
     }
 
-    @Pointcut("execution(* weather.springwea.service."
+    @Pointcut("execution(* by.abakumova.weatherjava.service."
             + "RegionService.saveRegion(..)) && args(newRegion)")
     public void saveRegionPointcut(final Region newRegion) {
     }

@@ -21,7 +21,7 @@ public final class TownController {
      *
      * @return List of all towns
      */
-    @GetMapping()
+    @GetMapping
     public List<Towns> findAllTowns() {
         return service.findAllTowns();
     }
