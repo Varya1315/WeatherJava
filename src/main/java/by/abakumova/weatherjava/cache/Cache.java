@@ -61,5 +61,4 @@ public class Cache<K, V> {
     public Iterable<Map.Entry<K, V>> getNativeCache() {
         return cacheMap.entrySet();
     }
-
 }
