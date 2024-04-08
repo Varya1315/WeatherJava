@@ -23,7 +23,7 @@ import java.util.List;
     @InjectMocks
     private RegionServiceAspect aspect;
     @Test
-    public void testLogSaveRegionSuccess2() {
+     void testLogSaveRegionSuccess2() {
         // Arrange
         Region newRegion = new Region();
         Region savedRegion = new Region();
@@ -35,32 +35,32 @@ import java.util.List;
            }
 
     @Test
-    public void testLogMethodCall() {
+     void testLogMethodCall() {
         aspect.logMethodCall();
        }
 
     @Test
-    public void testLogFindAllSuccess() {
+     void testLogFindAllSuccess() {
         List<Region> regions = new ArrayList<>();
         regions.add(new Region());
         aspect.logFindAllSuccess(regions);
         }
 
     @Test
-    public void testLogFindAllSuccessWithNullList() {
+     void testLogFindAllSuccessWithNullList() {
         aspect.logFindAllSuccess(null);
       }
 
 
     @Test
-    public void testLogBeforeSaveRegion() {
+     void testLogBeforeSaveRegion() {
         Region newRegion = new Region();
         newRegion.setName("TestRegion");
         aspect.logBeforeSaveRegion(newRegion);
          }
 
     @Test
-    public void testLogSaveRegionSuccess() {
+     void testLogSaveRegionSuccess() {
         Region newRegion = new Region();
         newRegion.setName("TestRegion");
         Region savedRegion = new Region();
@@ -71,7 +71,7 @@ import java.util.List;
          }
 
     @Test
-    public void testLogSaveRegionFailure() {
+     void testLogSaveRegionFailure() {
         Region newRegion = new Region();
         newRegion.setName("TestRegion");
 
@@ -80,7 +80,7 @@ import java.util.List;
          }
 
     @Test
-    public void testLogSaveRegionError() {
+     void testLogSaveRegionError() {
         // Arrange
         Region newRegion = new Region();
         Region savedRegion = new Region(); // Вот изменения здесь
