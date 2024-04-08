@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class RegionServiceAspectTest {
+ class RegionServiceAspectTest {
 
     @Mock
     private Logger logger;

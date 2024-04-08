@@ -12,31 +12,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
-public class RegionTest {
+ class RegionTest {
 
     private Region region;
 
     @BeforeEach
-    public void setUp2() {
+     void setUp2() {
         region = new Region();
     }
 
     @Test
-    public void testIdGetterAndSetter2() {
+     void testIdGetterAndSetter2() {
         Long id = 1L;
         region.setId(id);
         assertEquals(id, region.getId());
     }
 
     @Test
-    public void testNameGetterAndSetter2() {
+     void testNameGetterAndSetter2() {
         String name = "TestRegion";
         region.setName(name);
         assertEquals(name, region.getName());
     }
 
     @Test
-    public void testTownsGetterAndSetter2() {
+     void testTownsGetterAndSetter2() {
         List<Towns> towns = new ArrayList<>();
         towns.add(new Towns());
         towns.add(new Towns());
@@ -45,31 +45,31 @@ public class RegionTest {
     }
 
     @Test
-    public void testNoArgsConstructor2() {
+     void testNoArgsConstructor2() {
         assertNotNull(region);
     }
 
     @BeforeEach
-    public void setUp() {
+     void setUp() {
         region = new Region();
     }
 
     @Test
-    public void testIdGetterAndSetter() {
+     void testIdGetterAndSetter() {
         Long id = 1L;
         region.setId(id);
         assertEquals(id, region.getId());
     }
 
     @Test
-    public void testNameGetterAndSetter() {
+     void testNameGetterAndSetter() {
         String name = "TestRegion";
         region.setName(name);
         assertEquals(name, region.getName());
     }
 
     @Test
-    public void testTownsGetterAndSetter() {
+     void testTownsGetterAndSetter() {
         List<Towns> towns = new ArrayList<>();
         towns.add(new Towns());
         towns.add(new Towns());
@@ -78,13 +78,13 @@ public class RegionTest {
     }
 
     @Test
-    public void testNoArgsConstructor1() {
+     void testNoArgsConstructor1() {
         assertNotNull(region);
     }
 
 
     @Test
-    public void testToString() {
+     void testToString() {
         String name = "TestRegion";
         region.setName(name);
         String expectedToString = "Region(id=null, name=TestRegion, towns=null)";
@@ -92,26 +92,26 @@ public class RegionTest {
     }
 
     @Test
-    public void testToString2() {
+     void testToString2() {
         String name = "TestRegion";
         region.setName(name);
         String expectedToString = "Region(id=null, name=TestRegion, towns=null)";
         assertEquals(expectedToString, region.toString());
     }
     @Test
-    public void testIdGetterSetter() {
+     void testIdGetterSetter() {
         region.setId(1L);
         assertEquals(1L, region.getId());
     }
 
     @Test
-    public void testNameGetterSetter() {
+     void testNameGetterSetter() {
         region.setName("TestRegion");
         assertEquals("TestRegion", region.getName());
     }
 
     @Test
-    public void testTownsGetterSetter() {
+     void testTownsGetterSetter() {
         List<Towns> towns = new ArrayList<>();
         Towns town1 = new Towns();
         town1.setName("Town1");
@@ -125,7 +125,7 @@ public class RegionTest {
        }
 
     @Test
-    public void testAllArgsConstructor2() {
+     void testAllArgsConstructor2() {
         // Создаем список городов
         List<Towns> towns = new ArrayList<>();
         Towns town = new Towns();
@@ -145,21 +145,21 @@ public class RegionTest {
     }
 
     @Test
-    public void testIdGetterAndSetter22() {
+    void testIdGetterAndSetter22() {
         Long id = 1L;
         region.setId(id);
         assertEquals(id, region.getId());
     }
 
     @Test
-    public void testNameGetterAndSetter22() {
+     void testNameGetterAndSetter22() {
         String name = "TestRegion";
         region.setName(name);
         assertEquals(name, region.getName());
     }
 
     @Test
-    public void testTownsGetterAndSetter22() {
+     void testTownsGetterAndSetter22() {
         List<Towns> towns = new ArrayList<>();
         towns.add(new Towns());
         towns.add(new Towns());
@@ -168,12 +168,12 @@ public class RegionTest {
     }
 
     @Test
-    public void testNoArgsConstructor() {
+     void testNoArgsConstructor() {
         assertNotNull(region);
     }
 
     @Test
-    public void testAllArgsConstructor() {
+     void testAllArgsConstructor() {
         // Create a list of towns
         List<Towns> towns = new ArrayList<>();
         Towns town = new Towns();
@@ -193,7 +193,7 @@ public class RegionTest {
 
 
     @Test
-    public void testToString22() {
+     void testToString22() {
         String name = "TestRegion";
         region.setName(name);
         String expectedToString = "Region(id=null, name=TestRegion, towns=null)";
