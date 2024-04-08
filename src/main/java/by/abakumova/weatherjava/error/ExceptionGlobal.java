@@ -66,5 +66,4 @@ public class ExceptionGlobal {
                 HttpStatus.INTERNAL_SERVER_ERROR).body(
                 "500 Internal Server Error");
     }
-
 }
