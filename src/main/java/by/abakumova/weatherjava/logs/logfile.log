@@ -1,0 +1,24 @@
+2024-04-05 10:41:06.815 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m53s558ms979µs100ns).
+2024-04-05 10:43:33.768 [main] INFO  w.springwea.service.RegionService - Region not found
+2024-04-05 10:43:33.818 [main] INFO  w.springwea.service.RegionService - Region found in database and added to cache
+2024-04-05 10:43:33.830 [main] INFO  w.springwea.service.RegionService - Текущее количество запросов: 1
+2024-04-05 10:43:33.860 [main] INFO  w.springwea.service.RegionService - Region retrieved from cache
+2024-04-05 10:43:34.011 [main] INFO  w.springwea.service.RegionService - Region 'Test Region' saved and added to cache
+2024-04-05 10:43:34.021 [main] INFO  w.springwea.service.RegionService - Region found in cache
+2024-04-05 10:43:34.085 [main] INFO  w.springwea.service.RegionService - Region 'Region1' saved and added to cache
+2024-04-05 10:43:34.087 [main] INFO  w.springwea.service.RegionService - Region 'Region2' saved and added to cache
+2024-04-05 10:43:34.107 [main] INFO  w.springwea.service.RegionService - Region not found in cache.Retrieving towns by interesting fact from repository
+2024-04-05 10:43:34.107 [main] INFO  w.springwea.service.RegionService - Region retrieved from repository and added to cache
+2024-04-05 10:43:34.154 [main] INFO  w.springwea.service.RegionService - Region retrieved from database
+2024-04-05 10:43:34.536 [main] ERROR w.springwea.error.ExceptionGlobal - 400 Bad Request
+2024-04-05 10:43:34.550 [main] ERROR w.springwea.error.ExceptionGlobal - 405 Method Not Allowed
+2024-04-05 10:43:34.556 [main] ERROR w.springwea.error.ExceptionGlobal - 500 Internal Server Error
+2024-04-05 10:43:34.738 [main] INFO  w.springwea.service.TownService - Fetched 2 towns from database and saved to cache
+2024-04-05 10:43:34.748 [main] INFO  w.springwea.service.TownService - Town found in cache
+2024-04-05 10:43:34.764 [main] INFO  w.springwea.service.TownService - Town found in database
+2024-04-05 10:43:34.812 [main] INFO  w.springwea.service.TownService - Town found in cache
+2024-04-05 10:43:34.812 [main] INFO  w.springwea.service.TownService - Town updated in cache
+2024-04-05 10:43:34.823 [main] INFO  w.springwea.service.TownService - Town not found in database
+2024-04-05 10:43:34.827 [main] INFO  w.springwea.service.TownService - Town not found in database
+2024-04-05 10:43:34.827 [main] WARN  w.springwea.service.TownService - Town update operation failed due to not found in cache or repository
+2024-04-05 10:43:34.837 [main] INFO  w.springwea.service.TownService - Town removed from cache
