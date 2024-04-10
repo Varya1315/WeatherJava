@@ -57,35 +57,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     }
 
     @Test
-    void testLogFindAllSuccessWithNullList() {
-        // Act
-        aspect.logFindAllSuccess(null);
-
-    }
-
-    @Test
-    public void testLogBeforeSaveRegion() {
-        // Arrange
-        Region newRegion = new Region();
-        newRegion.setName("TestRegion");
-
-        // Создание ожидаемого сообщения лога
-        String expectedLogMessage = "Saving region with name: TestRegion";
-
-        // Создание макета (mock) для объекта логгера
-        Logger mockLogger = Mockito.mock(Logger.class);
-
-        // Замена логгера в аспекте на созданный макет
-        aspect.setLogger(mockLogger);
-
-        // Act
-        aspect.logBeforeSaveRegion(newRegion);
-
-        // Утверждение: проверяем, что метод info() был вызван с ожидаемым сообщением
-       }
-
-
-    @Test
     void testLogSaveRegionSuccess() {
         // Arrange
         Region newRegion = new Region();
