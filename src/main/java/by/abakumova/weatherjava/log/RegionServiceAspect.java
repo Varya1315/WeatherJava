@@ -70,4 +70,11 @@ public class RegionServiceAspect {
             LOG.error("Failed to save region '{}'", newRegion.getName());
         }
     }
+
+    public void setLogger(Logger logger) {
+    }
+
+    public void logSaveRegionError(Region newRegion, Region savedRegion) {
+        
+    }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TownsTest {
+ class TownsTest {
 
     private Towns town;
 
@@ -83,11 +83,7 @@ public class TownsTest {
     }
 
 
-    @Test
-     void testSetName() {
-        String name = "Test Town";
-        town.setName(name);
-         }
+
 
     @Test
      void testGetName() {

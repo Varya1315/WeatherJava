@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @ExtendWith(MockitoExtension.class)
  class RegionServiceAspectTest {
 
@@ -79,15 +80,4 @@ import java.util.List;
 
          }
 
-    @Test
-     void testLogSaveRegionError() {
-        // Arrange
-        Region newRegion = new Region();
-        Region savedRegion = new Region(); // Вот изменения здесь
-
-        // Act
-        regionServiceAspect.logSaveRegionSuccess(newRegion, savedRegion);
-
-        // Assert
-      }
 }

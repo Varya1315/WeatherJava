@@ -29,22 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void testNameGetterAndSetter2() {
-        String name = "TestRegion";
-        region.setName(name);
-        assertEquals(name, region.getName());
-    }
-
-    @Test
-     void testTownsGetterAndSetter2() {
-        List<Towns> towns = new ArrayList<>();
-        towns.add(new Towns());
-        towns.add(new Towns());
-        region.setTowns(towns);
-        assertEquals(towns, region.getTowns());
-    }
-
-    @Test
      void testNoArgsConstructor2() {
         assertNotNull(region);
     }
@@ -92,7 +76,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void testToString2() {
+     void testStr() {
         String name = "TestRegion";
         region.setName(name);
         String expectedToString = "Region(id=null, name=TestRegion, towns=null)";
@@ -125,7 +109,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
        }
 
     @Test
-     void testAllArgsConstructor2() {
+     void testConst() {
         // Создаем список городов
         List<Towns> towns = new ArrayList<>();
         Towns town = new Towns();
@@ -145,26 +129,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-    void testIdGetterAndSetter22() {
+    void testSetAndGet() {
         Long id = 1L;
         region.setId(id);
         assertEquals(id, region.getId());
-    }
-
-    @Test
-     void testNameGetterAndSetter22() {
-        String name = "TestRegion";
-        region.setName(name);
-        assertEquals(name, region.getName());
-    }
-
-    @Test
-     void testTownsGetterAndSetter22() {
-        List<Towns> towns = new ArrayList<>();
-        towns.add(new Towns());
-        towns.add(new Towns());
-        region.setTowns(towns);
-        assertEquals(towns, region.getTowns());
     }
 
     @Test
@@ -193,7 +161,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
     @Test
-     void testToString22() {
+     void testToStr() {
         String name = "TestRegion";
         region.setName(name);
         String expectedToString = "Region(id=null, name=TestRegion, towns=null)";
