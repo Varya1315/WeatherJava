@@ -2679,3 +2679,9 @@ Caused by: java.lang.IllegalArgumentException: warning no match for this type na
 2024-04-08 17:22:03.842 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-04-08 17:22:03.900 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-04-08 17:22:03.917 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-04-10 13:40:13.450 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 13:40:13.503 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll called.
+2024-04-10 13:40:13.516 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 13:40:13.529 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 13:40:13.632 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 13:40:13.647 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
