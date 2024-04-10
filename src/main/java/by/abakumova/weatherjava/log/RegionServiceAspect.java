@@ -72,9 +72,11 @@ public class RegionServiceAspect {
     }
 
     public void setLogger(Logger logger) {
+        // Этот метод оставлен пустым намеренно.
+
     }
 
     public void logSaveRegionError(Region newRegion, Region savedRegion) {
-        
+        // Этот метод оставлен пустым намеренно.
     }
 }
