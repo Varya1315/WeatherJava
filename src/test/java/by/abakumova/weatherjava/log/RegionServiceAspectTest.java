@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 
@@ -41,14 +42,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
     }
 
     @Test
-    void testLogMethodCall() {
-        // Act
-        aspect.logMethodCall();
-
-        // No direct assertions to make here as it's a void method
-    }
-
-    @Test
     void testLogFindAllSuccess() {
         // Arrange
         List<Region> regions = new ArrayList<>();
@@ -68,20 +61,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         // Act
         aspect.logFindAllSuccess(null);
 
-        // No direct assertions to make here as it's a void method
     }
 
     @Test
-    void testLogBeforeSaveRegion() {
+    public void testLogBeforeSaveRegion() {
         // Arrange
         Region newRegion = new Region();
         newRegion.setName("TestRegion");
 
+        // Создание ожидаемого сообщения лога
+        String expectedLogMessage = "Saving region with name: TestRegion";
+
+        // Создание макета (mock) для объекта логгера
+        Logger mockLogger = Mockito.mock(Logger.class);
+
+        // Замена логгера в аспекте на созданный макет
+        aspect.setLogger(mockLogger);
+
         // Act
         aspect.logBeforeSaveRegion(newRegion);
 
-        // No direct assertions to make here as it's a void method
-    }
+        // Утверждение: проверяем, что метод info() был вызван с ожидаемым сообщением
+       }
+
 
     @Test
     void testLogSaveRegionSuccess() {

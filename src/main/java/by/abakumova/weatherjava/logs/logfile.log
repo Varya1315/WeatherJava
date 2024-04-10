@@ -2720,3 +2720,28 @@ Caused by: java.lang.IllegalArgumentException: warning no match for this type na
 2024-04-10 13:58:40.223 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
 2024-04-10 13:58:40.237 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
 2024-04-10 13:58:40.255 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 14:06:22.288 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:06:40.700 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:06:40.790 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 14:06:40.808 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:06:40.896 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 14:06:40.928 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 14:06:40.981 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:07:34.869 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:08:11.977 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:08:52.460 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:08:52.504 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 14:08:52.536 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:08:52.570 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 14:08:52.600 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 14:08:52.637 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:10:29.534 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:10:29.655 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 14:10:29.673 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:10:29.709 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 14:10:29.720 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 14:10:33.153 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 14:10:33.191 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 14:10:33.210 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 14:10:33.222 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 14:10:33.231 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
