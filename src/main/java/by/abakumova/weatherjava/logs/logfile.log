@@ -2685,3 +2685,38 @@ Caused by: java.lang.IllegalArgumentException: warning no match for this type na
 2024-04-10 13:40:13.529 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
 2024-04-10 13:40:13.632 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
 2024-04-10 13:40:13.647 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 13:51:24.933 [main] INFO  b.a.weatherjava.service.TownService - Fetched 2 towns from database and saved to cache
+2024-04-10 13:51:24.976 [main] INFO  b.a.weatherjava.service.TownService - Town found in cache
+2024-04-10 13:51:24.998 [main] INFO  b.a.weatherjava.service.TownService - Town found in database
+2024-04-10 13:51:25.047 [main] INFO  b.a.weatherjava.service.TownService - Town found in cache
+2024-04-10 13:51:25.048 [main] INFO  b.a.weatherjava.service.TownService - Town updated in cache
+2024-04-10 13:51:25.061 [main] INFO  b.a.weatherjava.service.TownService - Town not found in database
+2024-04-10 13:51:25.084 [main] INFO  b.a.weatherjava.service.TownService - Town not found in database
+2024-04-10 13:51:25.084 [main] WARN  b.a.weatherjava.service.TownService - Town update operation failed due to not found in cache or repository
+2024-04-10 13:51:25.102 [main] INFO  b.a.weatherjava.service.TownService - Town removed from cache
+2024-04-10 13:51:25.329 [main] ERROR b.a.w.error.ExceptionGlobal - 400 Bad Request
+2024-04-10 13:51:25.356 [main] ERROR b.a.w.error.ExceptionGlobal - 405 Method Not Allowed
+2024-04-10 13:51:25.363 [main] ERROR b.a.w.error.ExceptionGlobal - 500 Internal Server Error
+2024-04-10 13:51:25.604 [main] INFO  b.a.w.service.RegionService - Region not found
+2024-04-10 13:51:25.628 [main] INFO  b.a.w.service.RegionService - Region found in database and added to cache
+2024-04-10 13:51:25.638 [main] INFO  b.a.w.service.RegionService - Текущее количество запросов: 2
+2024-04-10 13:51:25.653 [main] INFO  b.a.w.service.RegionService - Region retrieved from cache
+2024-04-10 13:51:25.704 [main] INFO  b.a.w.service.RegionService - Region 'Test Region' saved and added to cache
+2024-04-10 13:51:25.712 [main] INFO  b.a.w.service.RegionService - Region found in cache
+2024-04-10 13:51:25.736 [main] INFO  b.a.w.service.RegionService - Region 'Region1' saved and added to cache
+2024-04-10 13:51:25.737 [main] INFO  b.a.w.service.RegionService - Region 'Region2' saved and added to cache
+2024-04-10 13:51:25.748 [main] INFO  b.a.w.service.RegionService - Region not found in cache.Retrieving towns by interesting fact from repository
+2024-04-10 13:51:25.749 [main] INFO  b.a.w.service.RegionService - Region retrieved from repository and added to cache
+2024-04-10 13:51:25.775 [main] INFO  b.a.w.service.RegionService - Region retrieved from database
+2024-04-10 13:51:26.001 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 13:51:26.032 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll called.
+2024-04-10 13:51:26.041 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 13:51:26.048 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 13:51:26.063 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 13:51:26.069 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
+2024-04-10 13:58:40.163 [main] ERROR b.a.w.log.RegionServiceAspect - Error occurred:Method findAll returned null.
+2024-04-10 13:58:40.198 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll called.
+2024-04-10 13:58:40.211 [main] INFO  b.a.w.log.RegionServiceAspect - Method findAll completed successfully.
+2024-04-10 13:58:40.223 [main] INFO  b.a.w.log.RegionServiceAspect - Attempting to save region 'TestRegion'
+2024-04-10 13:58:40.237 [main] INFO  b.a.w.log.RegionServiceAspect - Region 'TestRegion' saved successfully
+2024-04-10 13:58:40.255 [main] ERROR b.a.w.log.RegionServiceAspect - Failed to save region 'TestRegion'
