@@ -54,6 +54,7 @@ public class RegionController {
             @RequestBody final Region region) {
         return service.saveRegion(region);
     }
+
     /**
      * Сохраняет список регионов.
      *
