@@ -43,6 +43,7 @@ public interface RegionRepository extends JpaRepository<Region, Long> {
      * @param townCount Количество городов.
      * @return Список регионов, удовлетворяющих условию.
      */
+
     @Query("SELECT r FROM Region r WHERE SIZE(r.towns) > :townCount")
     List<Region> findRegionsWithMoreTowns(@Param("townCount") int townCount);
 }
