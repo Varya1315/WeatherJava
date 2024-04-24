@@ -36,7 +36,7 @@ public interface RegionRepository extends JpaRepository<Region, Long> {
     @Query("SELECT t FROM Region r JOIN r.towns t WHERE"
             + " r.name = :regionName AND t.interestingFact = :interestingFact")
     List<Towns> findTownsByRegionAndInterestingFact(@Param("regionName")
-    String regionName, @Param("interestingFact") String interestingFact);
+                                                    String regionName, @Param("interestingFact") String interestingFact);
     /**
      * Найти регионы с количеством городов больше заданного значения.
      *

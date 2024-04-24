@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Search Result</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <!-- Добавьте другие поля города, если нужно -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="town : ${towns}">
+            <td th:text="${town.nameTowns}"></td>
+            <!-- Вывод других полей города -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

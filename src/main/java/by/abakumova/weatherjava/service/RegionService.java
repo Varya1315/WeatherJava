@@ -7,6 +7,7 @@ import by.abakumova.weatherjava.model.Towns;
 import by.abakumova.weatherjava.cache.Cache;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
@@ -82,16 +83,32 @@ public class RegionService {
      * @throws IllegalArgumentException Если регион с именем уже существует.
      */
     public Region saveRegion(final Region newRegion) {
-        Region existingRegion = repository.findByName(newRegion.getName());
-        if (existingRegion != null) {
-            throw new IllegalArgumentException("Region with name '"
-                    + newRegion.getName() + "' already exists");
+        String regionName = newRegion.getName();
+
+        // Проверка наличия имени региона
+        if (regionName == null || regionName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Region name must not be empty");
         }
+
+        // Проверка существования региона с таким именем
+        Region existingRegion = repository.findByName(regionName);
+        if (existingRegion != null) {
+            throw new IllegalArgumentException("Region with name '" + regionName + "' already exists");
+        }
+
+        // Сохранение городов
         List<Towns> towns = newRegion.getTowns();
-        repos.saveAll(towns);
+        if (towns != null && !towns.isEmpty()) {
+            repos.saveAll(towns);
+        }
+
+        // Сохранение региона
         Region savedRegion = repository.save(newRegion);
-        towns.forEach(town ->
-                regionCache.put(town.getNameTowns(), savedRegion));
+
+        // Добавление городов в кеш
+        if (towns != null) {
+            towns.forEach(town -> regionCache.put(town.getNameTowns(), savedRegion));
+        }
 
         LOG.info("Region '{}' saved and added to cache", savedRegion.getName());
         return savedRegion;
@@ -158,21 +175,24 @@ public class RegionService {
         return towns;
     }
 
-
     /**
      * Удаляет регион по его имени.
      *
      * @param name Имя региона для удаления.
      * @return Сообщение о результате операции удаления.
      */
-    public String deleteRegionByName(
-            final String name) {
+
+    public String deleteRegionByName(final String name) {
         Region regionToDelete = regionCache.get(name);
 
         if (regionToDelete == null) {
             regionToDelete = repository.findByName(name);
         }
+
         if (regionToDelete != null) {
+            // Инициализация коллекции towns
+            Hibernate.initialize(regionToDelete.getTowns());
+
             List<Towns> temp = regionToDelete.getTowns();
             repos.deleteAll(temp);
             repository.delete(regionToDelete);
@@ -216,4 +236,7 @@ public class RegionService {
             return null;
         }
     }
+
+
+
 }

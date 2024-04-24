@@ -1,9 +1,6 @@
 package by.abakumova.weatherjava.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.cache.annotation.EnableCaching;
 
@@ -14,37 +11,19 @@ import org.springframework.cache.annotation.EnableCaching;
 @Entity
 @EnableCaching
 public class Towns {
-    /**
-     * Marks this field as the primary key for the entity.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * The coordinates of the town.
-     */
     private String coordinates;
-
-    /**
-     * The name of the town.
-     */
     private String nameTowns;
-
-    /**
-     * The time of the town.
-     */
     private int time;
-
-    /**
-     * The position of the sun in the town.
-     */
     private String positionSun;
-
-    /**
-     * An interesting fact about the town.
-     */
     private String interestingFact;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "region_id") // Имя колонки для внешнего ключа
+    private Region region;
 
     public Towns() {
 // Этот метод намеренно оставлен пустым,

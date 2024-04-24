@@ -5,11 +5,14 @@ import by.abakumova.weatherjava.model.Towns;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController //requstbody -show in web
+@Controller //requstbody -show in web
 @RequestMapping("/api/v1/weather")
 @AllArgsConstructor
 public final class TownController {
@@ -21,9 +24,23 @@ public final class TownController {
      *
      * @return List of all towns
      */
-    @GetMapping
-    public List<Towns> findAllTowns() {
-        return service.findAllTowns();
+    @GetMapping("/towns")
+    public String findAllTowns(final Model model) {
+        List<Towns> towns = service.findAllTowns();
+        model.addAttribute("towns", towns);
+        return "towns";
+    }
+    @GetMapping("/saveTown")
+    public String showSaveTownForm(Model model) {
+        model.addAttribute("town", new Towns());
+        return "saveTown"; // Предполагается, что у вас есть представление с именем "saveTown"
+    }
+
+    @PostMapping("/saveTown")
+    public String saveTown(@ModelAttribute("town") Towns town, RedirectAttributes redirectAttributes) {
+        service.saveTowns(town);
+        redirectAttributes.addFlashAttribute("message", "Town saved successfully");
+        return "redirect:/api/v1/weather/towns"; // Перенаправление на страницу списка городов
     }
 
     /**
@@ -80,4 +97,35 @@ public final class TownController {
                                   @RequestParam final String coordinates) {
         return service.updateTownByName(nameTowns, coordinates);
     }
+
+    @GetMapping("/edit/{nameTowns}")
+    public String editTownForm(@PathVariable String nameTowns, Model model) {
+        model.addAttribute("town", service.findByNameTowns(nameTowns));
+        return "editTown"; // Предполагается, что у вас есть представление с именем "editTown"
+    }
+
+    @PostMapping("/town/{nameTowns}")
+    public String updateTown(@PathVariable String nameTowns,
+                             @ModelAttribute("town") Towns town,
+                             Model model) {
+        Towns updatedTown = service.updateTownByName(nameTowns, town.getCoordinates());
+        if (updatedTown != null) {
+            return "redirect:/api/v1/weather/towns"; // Перенаправление на страницу списка городов
+        } else {
+            // Город не найден, выполните необходимые действия, например, выведите сообщение об ошибке
+            model.addAttribute("error", "Город не найден");
+            return "error500"; // Предполагается, что у вас есть представление с именем "errorPage"
+        }
+    }
+
+
+
+
+    // Метод для обработки запроса на удаление города
+    @GetMapping("/delete/{nameTowns}")
+    public String deleteTown(@PathVariable String nameTowns) {
+        service.deleteTownsByNameTowns(nameTowns);
+        return "redirect:/api/v1/weather/towns"; // Перенаправление на страницу списка городов
+    }
+
 }
