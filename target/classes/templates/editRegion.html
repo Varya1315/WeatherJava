@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Region</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="mt-5 mb-3">Edit Region</h2>
+            <form th:action="@{/api/v2/region/region/{name}(name=${region.name})}" method="post">
+                <div class="form-group">
+                    <label for="name">Region Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" th:value="${region.name}" required>
+                </div>
+                <!-- You can add more fields here if needed -->
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a th:href="@{/api/v2/region/regions}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
