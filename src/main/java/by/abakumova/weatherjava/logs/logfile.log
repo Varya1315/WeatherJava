@@ -421,3 +421,6 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2024-04-24 12:11:56.717 [main] INFO  b.a.weatherjava.service.TownService - Town not found in database
 2024-04-24 12:11:56.718 [main] WARN  b.a.weatherjava.service.TownService - Town update operation failed due to not found in cache or repository
 2024-04-24 12:11:56.751 [main] INFO  b.a.weatherjava.service.TownService - Town removed from cache
+2024-04-24 12:17:29.898 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-24 12:17:29.960 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-04-24 12:17:29.988 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
