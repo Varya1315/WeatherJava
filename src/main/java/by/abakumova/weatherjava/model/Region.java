@@ -20,13 +20,8 @@ public class Region {
     private String name;
 
     @ToString.Exclude
-    // Use FetchType.EAGER to enable eager loading
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "region")
     private List<Towns> towns;
 
-//    public Region(String name, List<Towns> towns) {
-//        this.name = name;
-//        this.towns = towns;
-//    }
 
 }

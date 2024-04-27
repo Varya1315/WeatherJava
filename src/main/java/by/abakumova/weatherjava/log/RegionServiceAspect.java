@@ -15,10 +15,8 @@ import java.util.List;
 @Component
 public class RegionServiceAspect {
 
-
     private static final Logger LOG = LoggerFactory.getLogger(
             RegionServiceAspect.class);
-
 
     @Pointcut("execution(* by.abakumova.weatherjava.service.RegionService.findAll())")
     public void findAllPointcut() {
@@ -29,11 +27,6 @@ public class RegionServiceAspect {
         LOG.info("Method findAll called.");
     }
 
-    /**
-     * Логирует успешное выполнение метода findAll.
-     *
-     * @param regions Список регионов, возвращенный методом findAll.
-     */
     @AfterReturning(pointcut = "findAllPointcut()", returning = "regions")
     public void logFindAllSuccess(final List<Region> regions) {
         if (regions != null) {
@@ -54,12 +47,6 @@ public class RegionServiceAspect {
         LOG.info("Attempting to save region '{}'", newRegion.getName());
     }
 
-    /**
-     * Логирует успешное сохранение региона.
-     *
-     * @param newRegion   Новый регион, который был попыткой сохранить.
-     * @param savedRegion Сохраненный регион.
-     */
     @AfterReturning(pointcut = "saveRegionPointcut(newRegion)",
             returning = "savedRegion", argNames = "newRegion, savedRegion")
     public void logSaveRegionSuccess(
@@ -73,7 +60,6 @@ public class RegionServiceAspect {
 
     public void setLogger(Logger logger) {
         // Этот метод оставлен пустым намеренно.
-
     }
 
     public void logSaveRegionError(Region newRegion, Region savedRegion) {
