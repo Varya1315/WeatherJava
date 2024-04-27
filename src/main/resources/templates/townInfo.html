@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Town Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        .info-box {
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .info-title {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="info-box">
+                <h2 class="mt-0 mb-3 text-center info-title">Town Information</h2>
+                <div>
+                    <p><strong>Town Name:</strong> <span th:text="${town.nameTowns}"></span></p>
+                    <p><strong>Coordinates:</strong> <span th:text="${town.coordinates}"></span></p>
+                    <p><strong>Time:</strong> <span th:text="${town.time}"></span></p>
+                    <p><strong>Position of Sun:</strong> <span th:text="${town.positionSun}"></span></p>
+                    <p><strong>Interesting Fact:</strong> <span th:text="${town.interestingFact}"></span></p>
+                    <!-- Добавьте другие поля, если они есть в вашей модели -->
+                </div>
+                <a th:href="@{/api/v1/weather/towns}" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -27,7 +27,7 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
         }
 
         // Обработка других ошибок
-        return "region"; // Перенаправление на общую страницу ошибки
+        return "redirect:/api/v1/weather/towns"; // Перенаправление на общую страницу ошибки
     }
 
 }

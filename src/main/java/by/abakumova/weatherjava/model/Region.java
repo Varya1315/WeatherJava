@@ -2,6 +2,7 @@ package by.abakumova.weatherjava.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -18,13 +19,14 @@ public class Region {
     @Column(unique = true)
     private String name;
 
+    @ToString.Exclude
     // Use FetchType.EAGER to enable eager loading
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "region", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "region")
     private List<Towns> towns;
 
-    public Region(String name, List<Towns> towns) {
-        this.name = name;
-        this.towns = towns;
-    }
+//    public Region(String name, List<Towns> towns) {
+//        this.name = name;
+//        this.towns = towns;
+//    }
 
 }

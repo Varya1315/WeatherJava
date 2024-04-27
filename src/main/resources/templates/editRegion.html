@@ -12,10 +12,11 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mt-5 mb-3">Edit Region</h2>
-            <form th:action="@{/api/v2/region/region/{name}(name=${region.name})}" method="post">
+            <form th:action="@{/api/v2/region/region/edits}" method="post">
                 <div class="form-group">
-                    <label for="name">Region Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" th:value="${region.name}" required>
+                    <label for="nameRegion">Region Name:</label>
+                    <input type="text" class="form-control" id="nameRegion" name="nameRegion" th:value="${nameRegion}" required>
+                    <input type="hidden" name="regionName" th:value="${regionName}" />
                 </div>
                 <!-- You can add more fields here if needed -->
                 <button type="submit" class="btn btn-primary">Update</button>

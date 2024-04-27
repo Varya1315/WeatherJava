@@ -64,11 +64,6 @@ public class RegionService {
     public List<Region> saveRegions(final List<Region> regions) {
         List<Region> newRegions = new ArrayList<>();
         regions.forEach(region -> {
-            if ("va".equals(region.getName())) {
-                throw new HttpClientErrorException(
-                        HttpStatus.BAD_REQUEST,
-                        "Ошибка 400: Некорректное имя региона 'va'");
-            }
             newRegions.add(saveRegion(region));
         });
         return newRegions;
@@ -82,37 +77,97 @@ public class RegionService {
      * @return Сохраненный регион.
      * @throws IllegalArgumentException Если регион с именем уже существует.
      */
+//    public Region saveRegion(final Region newRegion) {
+//        String regionName = newRegion.getName();
+//
+//        // Проверка наличия имени региона
+//        if (regionName == null || regionName.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Region name must not be empty");
+//        }
+//
+//        // Проверка существования региона с таким именем
+//        Region existingRegion = repository.findByName(regionName);
+//        if (existingRegion != null) {
+//            throw new IllegalArgumentException("Region with name '" + regionName + "' already exists");
+//        }
+//
+//        // Сохранение городов
+//        List<Towns> towns = newRegion.getTowns();
+//        if (towns != null && !towns.isEmpty()) {
+//            repos.saveAll(towns);
+//        }
+//
+//        // Сохранение региона
+//        Region savedRegion = repository.save(newRegion);
+//
+//        // Добавление городов в кеш
+//        if (towns != null) {
+//            towns.forEach(town -> regionCache.put(town.getNameTowns(), savedRegion));
+//        }
+//
+//        LOG.info("Region '{}' saved and added to cache", savedRegion.getName());
+//        return savedRegion;
+//    }
+
+
+
     public Region saveRegion(final Region newRegion) {
-        String regionName = newRegion.getName();
-
-        // Проверка наличия имени региона
-        if (regionName == null || regionName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Region name must not be empty");
-        }
-
-        // Проверка существования региона с таким именем
-        Region existingRegion = repository.findByName(regionName);
+        Region existingRegion = repository.findByName(newRegion.getName());
         if (existingRegion != null) {
-            throw new IllegalArgumentException("Region with name '" + regionName + "' already exists");
+            throw new IllegalArgumentException("Region with name '"
+                    + newRegion.getName() + "' already exists");
         }
-
-        // Сохранение городов
         List<Towns> towns = newRegion.getTowns();
-        if (towns != null && !towns.isEmpty()) {
-            repos.saveAll(towns);
-        }
-
-        // Сохранение региона
+        repos.saveAll(towns);
         Region savedRegion = repository.save(newRegion);
-
-        // Добавление городов в кеш
-        if (towns != null) {
-            towns.forEach(town -> regionCache.put(town.getNameTowns(), savedRegion));
-        }
+        towns.forEach(town ->
+                regionCache.put(town.getNameTowns(), savedRegion));
 
         LOG.info("Region '{}' saved and added to cache", savedRegion.getName());
         return savedRegion;
     }
+
+
+//    public Region saveRegion(final Region newRegion) {
+//        String regionName = newRegion.getName();
+//
+//        // Проверка наличия имени региона
+//        if (regionName == null || regionName.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Region name must not be empty");
+//        }
+//
+//        // Проверка существования региона с таким именем
+//        Region existingRegion = repository.findByName(regionName);
+//        if (existingRegion != null) {
+//            throw new IllegalArgumentException("Region with name '" + regionName + "' already exists");
+//        }
+//
+//        // Сохранение городов
+//        List<Towns> towns = newRegion.getTowns();
+//        if (towns != null && !towns.isEmpty()) {
+//            for (Towns town : towns) {
+//                if (town != null) { // Проверяем, что town не null
+//                repos.save(town);
+//                }
+//            }
+//        }
+//
+//        // Сохранение региона
+//        Region savedRegion = repository.save(newRegion);
+//
+//        // Добавление городов в кеш
+//        if (towns != null) {
+//            for (Towns town : towns) {
+//                if (town != null && town.getNameTowns() != null) { // Проверяем, что town и его имя не null
+//                    regionCache.put(town.getNameTowns(), savedRegion);
+//                }
+//            }
+//        }
+//
+//        LOG.info("Region '{}' saved and added to cache", savedRegion.getName());
+//        return savedRegion;
+//    }
+
 
 
     /**
@@ -140,40 +195,33 @@ public class RegionService {
                 });
     }
 
-    /**
-     * Возвращает список городов по указанному региону и интересному факту.
-     *
-     * @param regionName      Название региона.
-     * @param interestingFact Интересный факт о городах.
-     * @return Список городов, удовлетворяющих указанному
-     * региону и интересному факту.
-     */
-    public List<Towns> findTownsByRegionAndInterestingFact(
-            final String regionName,
-            final String interestingFact) {
-        // Проверяем, есть ли регион в кеше
-        Region cachedRegion = regionCache.get(regionName);
-        if (cachedRegion != null) {
-            LOG.info("Region found in cache."
-                    + "Retrieving towns by interesting fact");
-            // Если регион найден в кеше, возвращаем список городов из кеша
-            return cachedRegion.getTowns();
-        }
-        LOG.info("Region not found in cache."
-                + "Retrieving towns by interesting fact from repository");
-        // Если регион не найден в кеше, получаем список городов из репозитория
-        List<Towns> towns = repository.findTownsByRegionAndInterestingFact(
-                regionName, interestingFact);
-
-        // Если список городов не пустой, добавляем регион в кеш
-        if (!towns.isEmpty()) {
-            Region region = repository.findByName(regionName);
-            regionCache.put(regionName, region);
-            LOG.info("Region retrieved from repository and added to cache");
-        }
-
-        return towns;
-    }
+//
+//    public List<Towns> findTownsByRegionAndInterestingFact(
+//            final String regionName,
+//            final String interestingFact) {
+//        // Проверяем, есть ли регион в кеше
+//        Region cachedRegion = regionCache.get(regionName);
+//        if (cachedRegion != null) {
+//            LOG.info("Region found in cache."
+//                    + "Retrieving towns by interesting fact");
+//            // Если регион найден в кеше, возвращаем список городов из кеша
+//            return cachedRegion.getTowns();
+//        }
+//        LOG.info("Region not found in cache."
+//                + "Retrieving towns by interesting fact from repository");
+//        // Если регион не найден в кеше, получаем список городов из репозитория
+//        List<Towns> towns = repository.findTownsByRegionAndInterestingFact(
+//                regionName, interestingFact);
+//
+//        // Если список городов не пустой, добавляем регион в кеш
+//        if (!towns.isEmpty()) {
+//            Region region = repository.findByName(regionName);
+//            regionCache.put(regionName, region);
+//            LOG.info("Region retrieved from repository and added to cache");
+//        }
+//
+//        return towns;
+//    }
 
     /**
      * Удаляет регион по его имени.
@@ -236,7 +284,10 @@ public class RegionService {
             return null;
         }
     }
-
-
+//
+//    public Region createRegionWithTowns(String regionName, List<Towns> towns) {
+//        Region region = new Region(regionName, towns);
+//        return repository.save(region);
+//    }
 
 }

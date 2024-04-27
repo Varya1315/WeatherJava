@@ -12,12 +12,13 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h2 class="mt-5 mb-3">Edit Town</h2>
-            <form th:action="@{/api/v1/weather/town/{name}(name=${town.nameTowns})}" method="post">
+            <form action="/api/v1/weather/updateByName" method="post">
+
                 <div class="form-group">
-                    <label for="name">Town Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" th:value="${existingTown != null ? existingTown.nameTowns : ''}" required>
+                    <label for="coordinates">New Coordinates:</label>
+                    <input type="hidden" name="nameTowns" th:value="${town.nameTowns}" required>
+                    <input type="text" class="form-control" id="coordinates" name="coordinates" placeholder="Enter New Coordinates" required>
                 </div>
-                <!-- You can add more fields here if needed -->
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a th:href="@{/api/v1/weather/towns}" class="btn btn-secondary">Cancel</a>
             </form>

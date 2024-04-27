@@ -1,61 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Town Management System</title>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    <title>Edit Town</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">Town Management System</a>
 
-    <!-- Toggler/collapsible Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/towns}">Town Management</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-<br>
 <div class="container">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class="text-center"> Create New Town </h1>
-            <div class="card-body">
-                <form th:action="@{/api/v1/weather/saveTown}" th:object="${town}" method="POST">
-                    <div class="form-group">
-                        <label> Town Name </label>
-                        <label>
-                            <input
-                                    type="text"
-                                    name="nameTowns"
-                                    th:field="*{nameTowns}"
-                                    class="form-control"
-                                    placeholder="Enter Town Name"
-                            />
-                        </label>
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Submit
-                        </button>
-                    </div>
-                </form>
+    <div class="form-container">
+        <h2 class="mt-5 mb-3 text-center">Create New Town</h2>
+        <form action="/api/v1/weather/saveTown" method="post">
+            <div class="form-group">
+                <label for="coordinates">Coordinates:</label>
+                <input type="text" class="form-control" id="coordinates" name="coordinates" placeholder="Enter Coordinates" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="nameTowns">Town Name:</label>
+                <input type="text" class="form-control" id="nameTowns" name="nameTowns" placeholder="Enter Town Name" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input type="text" class="form-control" id="time" name="time" placeholder="Enter Time" required>
+            </div>
+            <div class="form-group">
+                <label for="positionSun">Position of Sun:</label>
+                <input type="text" class="form-control" id="positionSun" name="positionSun" placeholder="Enter Position of Sun" required>
+            </div>
+            <div class="form-group">
+                <label for="interestingFact">Interesting Fact:</label>
+                <input type="text" class="form-control" id="interestingFact" name="interestingFact" placeholder="Enter Interesting Fact" required>
+            </div>
+            <!-- Add more input fields for other attributes if needed -->
+            <button type="submit" class="btn btn-primary btn-block">Create</button>
+            <a th:href="@{/api/v1/weather/towns}" class="btn btn-secondary btn-block mt-3">Cancel</a>
+        </form>
     </div>
 </div>
+
 </body>
 </html>

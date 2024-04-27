@@ -1,4 +1,4 @@
-package by.abakumova.weatherjava.error;
+/*package by.abakumova.weatherjava.error;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,4 +42,4 @@ public class ExceptionGlobal {
                 HttpStatus.INTERNAL_SERVER_ERROR).body(
                 "500 Internal Server Error");
     }
-}
+}*/

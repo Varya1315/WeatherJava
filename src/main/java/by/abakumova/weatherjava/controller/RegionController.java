@@ -2,7 +2,9 @@ package by.abakumova.weatherjava.controller;
 
 import by.abakumova.weatherjava.model.Region;
 import by.abakumova.weatherjava.model.Towns;
+import by.abakumova.weatherjava.repository.TownRepository;
 import by.abakumova.weatherjava.service.RegionService;
+import by.abakumova.weatherjava.service.TownService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +38,7 @@ public class RegionController {
      * Service for managing region-related operations.
      */
     private final RegionService service;
+    private final TownService serviceT;
 
 
     @GetMapping("/regions")
@@ -44,19 +48,31 @@ public class RegionController {
         return "region";
     }
 
+
+
     @GetMapping("/saveRegion")
-    public String showSaveRegionForm(Model model) {
+    public String showSaveRegionForm(final Model model) {
+      //  model.addAttribute("region", new Region());
         model.addAttribute("region", new Region());
+        model.addAttribute("town", new Towns());
         return "saveRegion";
     }
 
     // Сохранение нового региона
     @PostMapping("/saveRegion")
-    public String saveRegion(@ModelAttribute("region") Region region, RedirectAttributes redirectAttributes) {
+    public String saveRegion(@ModelAttribute("region") Region region,@ModelAttribute("town") Towns town) {
+
+        List<Towns> towns = new ArrayList<>();
+        town.setRegion(region);
+         towns.add(town);
+        region.setTowns(towns);
         service.saveRegion(region);
-        redirectAttributes.addFlashAttribute("message", "Region saved successfully");
+//        redirectAttributes.addFlashAttribute("message", "Region saved successfully");
         return "redirect:/api/v2/region/regions"; // Перенаправление на страницу списка регионов
     }
+
+
+
     /**
      * Сохраняет список регионов.
      *
@@ -69,6 +85,40 @@ public class RegionController {
         return service.saveRegions(regions);
     }
 
+
+//    @GetMapping("/createRegionWithTowns")
+//    public String showCreateRegionWithTownsForm(Model model) {
+//        // Здесь можно добавить логику, если это необходимо для отображения формы
+//        return "createRegionWithTowns"; // Имя представления, которое отображает форму создания региона с городами
+//    }
+//
+//    @PostMapping("/createRegionWithTowns")
+//    public String createRegionWithTowns(
+//            @RequestParam String regionName,
+//            @RequestParam List<String> townNames,
+//            RedirectAttributes redirectAttributes) {
+//        List<Towns> towns = new ArrayList<>();
+//        for (String townName : townNames) {
+//            Towns town = new Towns();
+//            town.setName(townName);
+//            towns.add(town);
+//        }
+//
+//        Region newRegion = new Region();
+//        newRegion.setName(regionName);
+//        newRegion.setTowns(towns);
+//
+//        try {
+//            Region createdRegion = service.saveRegion(newRegion);
+//            redirectAttributes.addFlashAttribute("message", "Region with towns saved successfully");
+//        } catch (IllegalArgumentException e) {
+//            redirectAttributes.addFlashAttribute("error", e.getMessage());
+//        }
+//
+//        return "redirect:/api/v2/region/regions"; // Перенаправление на главную страницу
+//    }
+
+
     /**
      * Найти регион по имени.
      *
@@ -80,31 +130,7 @@ public class RegionController {
             @RequestParam final String name) {
         return service.findByNameRegion(name);
     }
-    /**
-     * Удалить регион по имени.
-     *
-     * @param name Имя региона.
-     * @return Сообщение об успешном удалении или об ошибке.
-     */
-   /* @DeleteMapping("deleteByName")
-    public ResponseEntity<String> deleteRegionByName(
-            @RequestParam final String name) {
-        String result = service.deleteRegionByName(name);
-        if ("Delete".equals(result)) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(
-                    "Region not found", HttpStatus.NOT_FOUND);
-        }
-    }*/
 
-    /**
-     * Обновить регион по имени.
-     *
-     * @param name    Имя региона.
-     * @param newName Новое имя региона.
-     * @return Сообщение об успешном обновлении или об ошибке.
-     */
     @PatchMapping("updateByName")
     public ResponseEntity<String> updateRegionByName(
             @RequestParam final String name,
@@ -119,68 +145,48 @@ public class RegionController {
         }
     }
 
-    /**
-     * Получить список городов с интересным фактом для указанного региона.
-     *
-     * @param regionName      Имя региона.
-     * @param interestingFact Интересный факт.
-     * @return Список городов с интересным фактом.
-     */
-    @GetMapping("/townAndFact")
-    public ResponseEntity<List<Towns>> getTownsWithFact(
-            @RequestParam("regionName") final String regionName,
-            @RequestParam("interestingFact") final String interestingFact) {
-        List<Towns> towns = service.findTownsByRegionAndInterestingFact(
-                regionName, interestingFact);
-        if (!towns.isEmpty()) {
-            return ResponseEntity.ok(towns);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @GetMapping("/townAndFact")
+//    public ResponseEntity<List<Towns>> getTownsWithFact(
+//            @RequestParam("regionName") final String regionName,
+//            @RequestParam("interestingFact") final String interestingFact) {
+//        List<Towns> towns = service.findTownsByRegionAndInterestingFact(
+//                regionName, interestingFact);
+//        if (!towns.isEmpty()) {
+//            return ResponseEntity.ok(towns);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 
 
     @GetMapping("/region/edit/{name}")
-    public String editRegionForm(@PathVariable String name, Model model) {
-        model.addAttribute("region", service.findByNameRegion(name));
+    public String editRegionForm(@PathVariable String name, Model model, Model model1) {
+      //  System.out.println(service.findByNameRegion(name));
+        model.addAttribute("nameRegion", "");
+        Region region = service.findByNameRegion(name);
+        System.out.println(region.getName());
+        model1.addAttribute("regionName", region.getName());
         return "editRegion"; // Предполагается, что у вас есть представление с именем "editRegion"
     }
 
-    @PostMapping("/region/{name}")
-    public String updateRegion(@PathVariable String name,
-                               @ModelAttribute("region") Region region,
-                               Model model) {
+
+    @PostMapping("/region/edits")
+    public String updateRegion( @RequestParam("nameRegion") final String nameRegion,@RequestParam("regionName") final String regionName) {
         // Получить регион из базы данных по имени
-        Region existingRegion = service.findByNameRegion(name);
 
-        // Обновить данные существующего региона
-        existingRegion.setName(region.getName());
-        existingRegion.setTowns(region.getTowns()); // Обновить города, если нужно
+        Region existingRegion = service.findByNameRegion(regionName);
+        existingRegion.setName(nameRegion);
 
-        // Сохранить обновленный объект региона
         service.saveRegion(existingRegion);
 
-        return "redirect:/api/v2/region/regions"; // Перенаправление на страницу списка регионов
+        return "redirect:/api/v2/region/regions";
     }
 
-    // Метод для обработки запроса на удаление региона
     @GetMapping("/region/delete/{name}")
     public String deleteRegion(@PathVariable String name) {
         service.deleteRegionByName(name);
         return "redirect:/api/v2/region/regions"; // Перенаправление на страницу списка регионов
-    }
-    @GetMapping("/search")
-    public String searchTownByCriteria(@RequestParam("regionName") String regionName,
-                                       @RequestParam("interestingFact") String interestingFact,
-                                       Model model) {
-        ResponseEntity<List<Towns>> response = getTownsWithFact(regionName, interestingFact);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            model.addAttribute("towns", response.getBody());
-            return "townSearchResult"; // Предполагается, что у вас есть представление с именем "townSearchResult"
-        } else {
-            return "error500"; // Предполагается, что у вас есть представление с именем "errorPage"
-        }
     }
 
 }
