@@ -82,7 +82,7 @@ public final class TownController {
                              Model model) {
         Towns updatedTown = service.updateTownByName(nameTowns, coordinates);
         if (updatedTown != null) {
-            return "redirect:/api/v1/weather/towns";
+            return REDIRECT_TO_TOWNS;
         } else {
             model.addAttribute("error", "Город не найден");
             return "error500";
