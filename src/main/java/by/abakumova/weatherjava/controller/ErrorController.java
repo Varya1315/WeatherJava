@@ -23,5 +23,4 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
         }
         return "redirect:/api/v1/weather/towns";
     }
-
 }
