@@ -9,6 +9,5 @@ by\abakumova\weatherjava\controller\RegionController.class
 by\abakumova\weatherjava\repository\RegionRepository.class
 by\abakumova\weatherjava\repository\TownRepository.class
 by\abakumova\weatherjava\service\RegionService.class
-by\abakumova\weatherjava\error\ExceptionGlobal.class
 by\abakumova\weatherjava\service\CounterService.class
 by\abakumova\weatherjava\service\TownService.class
