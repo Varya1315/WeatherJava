@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  town_db:
+    image: postgres
+    container_name: town_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 19072004m
+      POSTGRES_DB: town
+    ports:
+      - '5432:5432'
+    networks:
+      - town-network
+
+  backend:
+    image: weatherjava
+    ports:
+      - "8080:8080"
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: 19072004m
+      DB_NAME: town
+      DB_HOST: town_db:5432
+    depends_on:
+      - town_db
+    networks:
+      - town-network
+
+networks:
+  town-network:
+    driver: bridge
