@@ -20,7 +20,7 @@ public final class TownController {
 
     private final TownService service;
     private  final RegionService regionService;
-
+    public static final String REDIRECT_TO_TOWNS = "redirect:/api/v1/weather/towns";
     @GetMapping("/towns")
     public String findAllTowns(final Model model) {
         List<Towns> towns = service.findAllTowns();
@@ -37,7 +37,7 @@ public final class TownController {
     public String saveTown(@ModelAttribute("town") Towns town, RedirectAttributes redirectAttributes) {
         service.saveTowns(town);
         redirectAttributes.addFlashAttribute("message", "Town saved successfully");
-        return "redirect:/api/v1/weather/towns";
+        return REDIRECT_TO_TOWNS;
     }
 
     @PostMapping("saveTowns")
@@ -99,6 +99,6 @@ public final class TownController {
     @GetMapping("/delete/{nameTowns}")
     public String deleteTown(@PathVariable String nameTowns) {
         service.deleteTownsByNameTowns(nameTowns);
-        return "redirect:/api/v1/weather/towns";
+        return REDIRECT_TO_TOWNS;
     }
 }

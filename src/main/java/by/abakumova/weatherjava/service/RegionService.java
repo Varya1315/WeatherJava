@@ -46,9 +46,7 @@ public class RegionService {
 
     public List<Region> saveRegions(final List<Region> regions) {
         List<Region> newRegions = new ArrayList<>();
-        regions.forEach(region -> {
-            newRegions.add(saveRegion(region));
-        });
+        regions.forEach(region -> newRegions.add(saveRegion(region)));
         return newRegions;
     }
 

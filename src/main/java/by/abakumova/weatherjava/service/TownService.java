@@ -60,9 +60,6 @@ public class TownService {
         Towns existingTown = findByNameTowns(nameTowns);
         if (existingTown != null) {
             existingTown.setCoordinates(coordinates);
-
-            System.out.println(nameTowns);
-
             if (townCache.get(nameTowns) != null) {
                 townCache.put(nameTowns, existingTown);
                 LOG.info("Town updated in cache");

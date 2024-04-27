@@ -20,6 +20,8 @@ public class RegionController {
 
     private final RegionService service;
 
+    public static final String REDIRECT_TO_REGIONS = "redirect:/api/v2/region/regions";
+
     @GetMapping("/regions")
     public String findAllRegion(final Model model) {
         List<Region> regions = service.findAll();
@@ -42,7 +44,7 @@ public class RegionController {
          towns.add(town);
         region.setTowns(towns);
         service.saveRegion(region);
-        return "redirect:/api/v2/region/regions";
+        return REDIRECT_TO_REGIONS;
     }
 
     @PostMapping("/saveRegions")
@@ -75,7 +77,6 @@ public class RegionController {
     public String editRegionForm(@PathVariable String name, Model model, Model model1) {
         model.addAttribute("nameRegion", "");
         Region region = service.findByNameRegion(name);
-        System.out.println(region.getName());
         model1.addAttribute("regionName", region.getName());
         return "editRegion";
     }
@@ -86,12 +87,12 @@ public class RegionController {
         Region existingRegion = service.findByNameRegion(regionName);
         existingRegion.setName(nameRegion);
         service.saveRegion(existingRegion);
-        return "redirect:/api/v2/region/regions";
+        return REDIRECT_TO_REGIONS;
     }
 
     @GetMapping("/region/delete/{name}")
     public String deleteRegion(@PathVariable String name) {
         service.deleteRegionByName(name);
-        return "redirect:/api/v2/region/regions";
+        return REDIRECT_TO_REGIONS;
     }
 }
