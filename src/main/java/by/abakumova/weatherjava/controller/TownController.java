@@ -101,5 +101,4 @@ public final class TownController {
         service.deleteTownsByNameTowns(nameTowns);
         return "redirect:/api/v1/weather/towns";
     }
-
 }

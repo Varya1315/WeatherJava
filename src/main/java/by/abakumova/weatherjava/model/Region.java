@@ -18,7 +18,6 @@ public class Region {
 
     @Column(unique = true)
     private String name;
-
     @ToString.Exclude
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "region")
     private List<Towns> towns;

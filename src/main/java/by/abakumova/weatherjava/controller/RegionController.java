@@ -3,10 +3,7 @@ package by.abakumova.weatherjava.controller;
 import by.abakumova.weatherjava.model.Region;
 import by.abakumova.weatherjava.model.Towns;
 import by.abakumova.weatherjava.service.RegionService;
-import by.abakumova.weatherjava.service.TownService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,12 +17,8 @@ import java.util.List;
 @RequestMapping("/api/v2/region")
 @AllArgsConstructor
 public class RegionController {
-    private static final Logger LOG = LoggerFactory.getLogger(
-            RegionController.class);
 
     private final RegionService service;
-    private final TownService serviceT;
-
 
     @GetMapping("/regions")
     public String findAllRegion(final Model model) {
